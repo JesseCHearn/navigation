@@ -1,0 +1,36 @@
+CHANGELOG
+
+12112017
+
+Functionality:
+
+	Added code at end of obstacle detection for the OSV to turn towards the mission site.
+	This will hopefully fix the issue we were having with the OSV getting stuck in an infinite loop behind obstacles.
+
+Housekeeping:
+
+	Overall, streamlined code for ease of use and less memory usage.
+	See specifics below.
+
+	Removed:
+	missionState implementation (replaced with break())
+	targetTheta
+	errX
+	errY
+
+	Moved errTheta, and motorValue variable to turnTo() method
+
+	Simplified code through implementation of moveForward() and stopMoving() methods.
+
+	Added the following methods:
+	checkPosition() : This method gets OSV position from the Enes100 vision system library
+	moveForward(int power) : This method moves the OSV forward with minMotorValue<=power<=255
+	stopMoving() : This method halts OSV drivetrain movement
+
+	Added commented descriptions to the following methods:
+	calcHeading()
+	calcDistance()
+	turnTo()
+	checkPosition()
+	moveForward()
+	stopMoving()
