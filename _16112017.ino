@@ -12,6 +12,7 @@ int minMotorValue = 140; // minimum input value which will produce a turning mov
 float k = (255 - minMotorValue) / PI; // proportional controller for turning speed (“gain”)
 
 int dist; // resistance value provided by distance sensor
+int dist1;
 
 float xMission; // variable to hold x location of mission site
 float yMission; // variable to hold y location of mission site
@@ -47,7 +48,8 @@ void loop()
   if (calcDistance() > .15)
   {
     dist = analogRead(6);
-    if (dist > 200)//%%%%%%%%Need to go forward over rocky terrain. No stopping. (Add and to if statement)
+    dist1 = analogRead(1);
+    if (dist > 200 || dist1>200)//%%%%%%%%Need to go forward over rocky terrain. No stopping. (Add and to if statement)
     {
       enes.println("OBSTACLE DETECTED");
       stopMoving();
@@ -62,7 +64,7 @@ void loop()
           enes.println("yMission<1");
           turnTo(3 * PI / 2);
           moveForward(255);
-          delay(1300);
+          delay(1900);
           stopMoving();
           delay(100);
 
@@ -72,7 +74,7 @@ void loop()
           enes.println("yMission>1");
           turnTo(PI / 2);
           moveForward(255);
-          delay(1300);
+          delay(1900);
           stopMoving();
           delay(100);
         }
@@ -85,7 +87,7 @@ void loop()
           enes.println("yMission<1");
           turnTo(3 * PI / 2);
           moveForward(255);
-          delay(1300);
+          delay(1900);
           stopMoving();
           delay(100);
         }
@@ -94,7 +96,7 @@ void loop()
           enes.println("yMission>1");
           turnTo(PI / 2);
           moveForward(255);
-          delay(1300);
+          delay(1900);
           stopMoving();
           delay(100);
         }
@@ -106,7 +108,7 @@ void loop()
     {
       if(obstacle){
         moveForward(255);
-        delay(800);
+        delay(1000);
         stopMoving();
         delay(100);
         obstacle=false;
